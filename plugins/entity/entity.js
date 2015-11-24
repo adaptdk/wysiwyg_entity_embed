@@ -19,8 +19,8 @@ Drupal.wysiwyg.plugins['entity'] = {
   },
 
   insert_form: function (data, settings, instanceId) {
-    var formatFieldId = instanceId.replace('-value', '-format--2');
-    var formatName = $('#' + formatFieldId).find(":selected").val();
+    var instance = Drupal.wysiwyg.instances[instanceId];
+    var formatName = instance.format.substring(6);
 
     var dialogUrl = Drupal.settings.basePath + 'admin/wysiwyg-entity-embed/insert/ajax/' + formatName;
     var dialogdiv = $('<div id="entity-insert-dialog"></div>');
