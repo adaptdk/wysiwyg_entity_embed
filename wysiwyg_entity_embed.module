@@ -196,13 +196,16 @@ function _wysiwyg_entity_embed_tips($filter, $format, $long) {
  * @return string
  */
 function _wysiwyg_entity_embed_replacements($matches, $text) {
-  $view_mode = 'teaser';
+  $view_mode = 'full_standard';
 
   foreach($matches[0] AS $delta => $match) {
     $entity = entity_load_single($matches[2][$delta], $matches[3][$delta]);
-    $entity_view = entity_view($matches[2][$delta], array($entity), $view_mode);
-    $entity_render = render($entity_view);
-    $text = str_replace($match, $entity_render, $text);
+    $text = '';
+    if ($entity) {
+      $entity_view = entity_view($matches[2][$delta], array($entity), $view_mode);
+      $entity_render = render($entity_view);
+      $text = str_replace($match, $entity_render, $text);
+    }
   }
 
   return $text;
