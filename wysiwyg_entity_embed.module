@@ -200,7 +200,6 @@ function _wysiwyg_entity_embed_replacements($matches, $text) {
 
   foreach($matches[0] AS $delta => $match) {
     $entity = entity_load_single($matches[2][$delta], $matches[3][$delta]);
-    $text = '';
     if ($entity) {
       $entity_view = entity_view($matches[2][$delta], array($entity), $view_mode);
       $entity_render = render($entity_view);
